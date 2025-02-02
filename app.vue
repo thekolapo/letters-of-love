@@ -13,11 +13,11 @@
 
 <style lang="scss" scoped>
 .app {
-  padding: 60px 250px 110px;
+  padding: 70px 250px 110px;
   height: 100vh;
 
   &__main {
-    padding-top: 80px;
+    padding: 80px 0;
   }
 
   &__logo {

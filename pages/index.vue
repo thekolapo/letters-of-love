@@ -8,20 +8,16 @@
 			<p class="home__letters-title">Featured Letters</p>
 			<div class="home__letters-list">
 				<div class="home__letter">
-					<nuxt-link to="letter/mama" class="u-font-normal">A love letter from Jane Doe</nuxt-link>
+					<nuxt-link to="letter/mama" class="u-font-normal">Love from Kolapo</nuxt-link>
 					<div class="home__letter-date">12 hours ago</div>
 				</div>
 				<div class="home__letter">
 					<nuxt-link to="letter/mama" class="u-font-normal">I love you mama</nuxt-link>
 					<div class="home__letter-date">2 days ago</div>
 				</div>
-				<div class="home__letter">
-					<nuxt-link to="letter/mama" class="u-font-normal">I wish you the very best in life , always</nuxt-link>
-					<div class="home__letter-date">2 days ago</div>
-				</div>
 			</div>
 		</div>
-		<button class="c-button c-button--add">+</button>
+		<nuxt-link :to="{name: 'new-letter'}" class="c-button c-button--add">+</nuxt-link>
 	</div>
 </template>
   

@@ -29,21 +29,5 @@ onMounted(() => {
 </script>
   
 <style lang="scss" scoped>
-.letter {
-	display: flex;
-	flex-direction: column;
-
-	&__body {
-		margin-top: 67px;
-		width: 100%;
-		max-width: 900px;
-		background: transparent;
-		border: none;
-		color: inherit;
-		padding: 0;
-		min-height: 350px;
-		white-space: pre-wrap;
-		resize: none;
-	}
-}
+@use "@/assets/scss/pages/letter.scss";
 </style>
