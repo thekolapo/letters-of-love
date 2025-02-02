@@ -1,8 +1,9 @@
 // core imports
 @use './core/reset';
-// @use 'core/fonts';
 @use './core/base';
-// @use 'utils/typography';
+
+// utils imports
+@use 'utils/typography';
 
 // components import
 @use './components/button';

@@ -1,5 +1,9 @@
-$ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-
 :root {
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
   --color-black: #171717;
+	--color-gray: #939393;
+	--color-green: #4CD2A2;
+	--color-red:rgb(210, 76, 101);
+	--color-orange:rgb(241, 143, 69);
 }

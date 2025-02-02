@@ -1,8 +1,9 @@
 html {
-	font-family: 'Inter', -apple-system, 'system-ui', 'Segoe UI', Roboto, Oxygen,
+	font-family: 'PT Serif', -apple-system, 'system-ui', 'Segoe UI', Roboto, Oxygen,
 		Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 	font-weight: 400;
 	font-size: 62.5%;
+	font-style: italic;
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 	-moz-osx-font-smoothing: grayscale;
@@ -22,7 +23,7 @@ body {
 	font-size: 16px;
 	line-height: 22px;
 	overflow-x: hidden;
-	color: #CECECE;
+	color: #cacaca;
   background-color: var(--color-black);
 
 	// @include screen(small) {

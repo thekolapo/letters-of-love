@@ -1,2 +1,22 @@
-.button {
+.c-button {
+	$size: 60px;
+	position: fixed;
+	bottom: 80px;
+	right: 250px;
+	width: $size;
+	height: $size;
+	border-radius: 100px;
+	border: none;
+	transition: 0.8s transform var(--ease-out-expo);
+	box-shadow: 0px 20px 30px 0px rgba(0, 0, 0, 0.25);
+
+	&:hover {
+		transform: scale(1.1) rotate(90deg);
+	}
+
+	&--add {
+		font-weight: 500;
+		font-size: 30px;
+		background-color: var(--color-red);
+	}
 }
