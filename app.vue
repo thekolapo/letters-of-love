@@ -13,8 +13,15 @@
 
 <style lang="scss" scoped>
 .app {
-  padding: 70px 250px 110px;
+  padding: 70px 20px 110px;
   height: 100vh;
+  margin: 0 auto;
+  max-width: 1220px;
+  width: 100%;
+
+  @media screen and (max-width: 1024px) {
+		// display: none;/
+	}
 
   &__main {
     padding: 80px 0;

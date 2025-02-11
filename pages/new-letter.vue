@@ -7,7 +7,7 @@
 		>
 			<input 
 				type="text" 
-				placeholder="Letter title – A love letter from John Doe"
+				placeholder="A love letter from John Doe"
 				class="letter__title u-font-normal"
 				autofocus
 				required
