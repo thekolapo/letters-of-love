@@ -100,7 +100,7 @@ const View = {
 	DELIVERY_DETAILS: 'delivery_details'
 };
 
-const activeView = ref(View.DELIVERY_DETAILS);
+const activeView = ref(View.LETTER);
 
 const switchView = (view) => {
 	activeView.value = view;
