@@ -100,7 +100,7 @@ const View = {
 	DELIVERY_DETAILS: 'delivery_details'
 };
 
-const activeView = ref(View.LETTER);
+const activeView = ref(View.DELIVERY_DETAILS);
 
 const switchView = (view) => {
 	activeView.value = view;
@@ -147,6 +147,10 @@ onMounted(() => {
 			color: inherit;
 			margin-bottom: 50px;
 
+      @media screen and (max-width: 480px) {
+        padding: 0;
+      }
+
 			&:hover {
 				--svg-scale: 1.2
 			}
@@ -171,6 +175,10 @@ onMounted(() => {
 			input {
 				width: 100%;
 				max-width: 370px;
+
+        @media screen and (max-width: 480px) {
+          padding: 0;
+        }
 			}
 
 			select {
@@ -193,6 +201,10 @@ onMounted(() => {
 					outline: none;
 					background: transparent;
 					width: fit-content;
+
+          @media screen and (max-width: 480px) {
+            transform: scale(1.12);
+          }
 				}
 			}
 		}

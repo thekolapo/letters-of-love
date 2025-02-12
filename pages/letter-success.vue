@@ -44,6 +44,10 @@ onMounted(() => {
 
 	&__project-credit {
 		margin-top: 150px;
+
+    @media screen and (max-width: 480px) {
+      margin-top: 120px;
+    }
 	}
 }
 </style>

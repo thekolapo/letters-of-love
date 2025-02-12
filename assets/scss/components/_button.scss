@@ -16,6 +16,7 @@
 	color: var(--color-black);
 
 	@media screen and (max-width: 480px) {
+    --size: 55px;
 		right: 30px;
 		bottom: 40px;
 	}
@@ -29,9 +30,20 @@
 		font-size: 30px;
 		font-style: normal;
 		background-color: var(--color-red);
+
+    @media screen and (max-width: 480px) {
+      font-weight: 400;
+      font-size: 28px;
+    }
 	}
 
 	&--next {
 		background-color: var(--color-black-light);
+
+    @media screen and (max-width: 480px) {
+      svg {
+        transform: scale(0.9);
+      }
+    }
 	}
 }

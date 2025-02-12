@@ -14,22 +14,30 @@
 <style lang="scss" scoped>
 .app {
   padding: 70px 20px 110px;
-  height: 100vh;
+  // height: 100vh;
   margin: 0 auto;
   max-width: 1220px;
   width: 100%;
 
-  @media screen and (max-width: 1024px) {
-		// display: none;/
+  @media screen and (max-width: 480px) {
+    padding: 50px 20px;
 	}
 
   &__main {
     padding: 80px 0;
+
+    @media screen and (max-width: 480px) {
+      padding: 40px 0;
+	  }
   }
 
   &__logo {
     width: 150px;
     height: auto;
+
+    @media screen and (max-width: 480px) {
+      width: 135px;
+	  }
   }
 }
 </style>

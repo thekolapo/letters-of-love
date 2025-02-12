@@ -29,6 +29,10 @@
 	&__letters {
 		margin-top: 80px;
 
+    @media screen and (max-width: 480px) {
+      margin-top: 50px;
+	  }
+
 		&-title {
 			text-transform: uppercase;
 			// text-decoration: underline;
@@ -56,6 +60,10 @@
 		&-date {
 			margin-top: 12px;
 			color: var(--color-gray);
+
+      @media screen and (max-width: 480px) {
+        margin-top: 8px;
+      }
 		}
 	}
 }

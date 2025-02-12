@@ -19,6 +19,13 @@ html {
 	margin: 0;
 }
 
+// safari-specific
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: gray;
+  opacity: 0.9;
+}
+
 body {
 	font-size: 16px;
 	line-height: 22px;
@@ -26,8 +33,8 @@ body {
 	color: #cacaca;
   background-color: var(--color-black);
 
-	// @include screen(small) {
-	// 	font-size: 1.6rem;
-	// 	line-height: 2.6rem;
-	// }
+  @media screen and (max-width: 480px) {
+		font-size: 15px;
+		line-height: 21px;
+	}
 }
