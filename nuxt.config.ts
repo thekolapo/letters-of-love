@@ -46,4 +46,8 @@ export default defineNuxtConfig({
       encryptionAlgorithm: process.env.NUXT_PUBLIC_ENCRYPTION_ALGORITHM
     },
   },
+
+  nitro: {
+    preset: "netlify"
+  },
 })
