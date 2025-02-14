@@ -7,13 +7,9 @@
 		<div class="home__letters">
 			<p class="home__letters-title">Featured Letters</p>
 			<div class="home__letters-list">
-				<div class="home__letter">
-					<nuxt-link to="letter/mama" class="u-font-normal">Love from Kolapo</nuxt-link>
-					<div class="home__letter-date">12 hours ago</div>
-				</div>
-				<div class="home__letter">
-					<nuxt-link to="letter/mama" class="u-font-normal">I love you mama</nuxt-link>
-					<div class="home__letter-date">2 days ago</div>
+				<div class="home__letter" v-for="(letter, index) in featuredLetters" :key="index">
+					<nuxt-link :to="`letter/${letter.slug}`" class="u-font-normal">{{ letter.title }}</nuxt-link>
+					<div class="home__letter-date">{{ formatDate(letter.createdAt._seconds) }}</div>
 				</div>
 			</div>
 		</div>
@@ -22,6 +18,23 @@
 </template>
   
 <script setup>
+import { useAsyncData } from '#app'
+import { useApi } from '~/composables/api';
+
+const api = useApi();
+
+const { data: featuredLetters, pending, error, refresh } = useAsyncData('lettersData', async () => {
+  const response = await api.fetchFeaturedLetters(); 
+  const featuredLetters = response.data.data
+
+  return featuredLetters; 
+});
+
+const formatDate = (seconds) => {
+  const date = new Date(seconds * 1000);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return date.toLocaleDateString('en-US', options);
+};
 </script>
   
 <style lang="scss" scoped>

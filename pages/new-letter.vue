@@ -6,6 +6,7 @@
 			class="letter__writeform"
 		>
 			<input 
+        v-model="title"
 				type="text" 
 				placeholder="A love letter from John Doe"
 				class="letter__title u-font-normal"
@@ -16,7 +17,7 @@
 				ref="textArea" 
 				class="letter__body u-font-md" 
 				:placeholder="textAreaPlaceholder"
-				v-model="textAreaContent"
+				v-model="body"
 				@input="autoResizeTextArea()"
 				required
 			/>
@@ -40,6 +41,7 @@
 			<div class="letter__sendform-field">
 				<p class="u-font-sm">Enter your email to get the letter link *</p>
 				<input 
+          v-model="senderEmail"
 					type="email" 
 					placeholder="janedoe@email.com"
 					class="u-font-normal"
@@ -73,10 +75,12 @@
 				<input 
 					type="checkbox" 
 					class="u-font-normal"
+          v-model="isFeatured"
 				>
 			</div>
-			<button type="submit" class="c-button c-button--next">
-				<svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<button :disabled="isSendingLetter" type="submit" class="c-button c-button--next">
+        <span v-if="isSendingLetter" class="c-button__loader" />
+				<svg v-else width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M16.0279 9.20779C16.0279 9.16398 16.0279 9.14208 16.0065 9.09827C15.9851 8.7259 15.8351 8.35352 15.5566 8.09067L8.74365 1.10323C8.57225 0.927993 8.31516 0.927993 8.14377 1.10323C7.97237 1.27846 7.97237 1.54131 8.14377 1.71655L14.9567 8.70399C14.9781 8.7259 14.9781 8.7478 14.9996 8.7697H1.24514C1.00947 8.7697 0.81665 8.96684 0.81665 9.20779C0.81665 9.44874 1.00947 9.64587 1.24514 9.64587H14.9996C14.9781 9.66778 14.9781 9.68968 14.9567 9.71159L8.12234 16.6771C7.95095 16.8524 7.95095 17.1152 8.12234 17.2904C8.20804 17.3781 8.31516 17.4219 8.42228 17.4219C8.52941 17.4219 8.63653 17.3781 8.72223 17.2904L15.5566 10.303C15.8137 10.0401 15.9851 9.66778 16.0065 9.29541C16.0279 9.2735 16.0279 9.2516 16.0279 9.20779Z" fill="white"/>
 				</svg>
 			</button>
@@ -86,14 +90,21 @@
 
 <script setup>
 import {ref, onMounted, watch, computed} from 'vue';
-import { navigateTo } from '#app';
+import { useAsyncData, navigateTo } from '#app';
+import { useApi } from '~/composables/api';
+
+const api = useApi();
 
 const textArea = ref(null);
 const textAreaPlaceholder = "Jane Doe,\n\nI’ll love you to the end of time and till my dying breath. When I’m with you, life is perfect and time ceases to exist.\n\nLove from,\nJohn Doe";
-const textAreaContent = ref("");
 
+const title = ref("");
+const body = ref("");
 const recipientEmail = ref('');
+const senderEmail = ref('');
 const senderName = ref('');
+const isFeatured = ref(false);
+const isSendingLetter = ref(false);
 
 const View = {
 	LETTER: 'letter',
@@ -106,8 +117,29 @@ const switchView = (view) => {
 	activeView.value = view;
 };
 
-const handleLetterSend = () => {
-	navigateTo('/letter-success');
+const handleLetterSend = async () => {
+  try {
+    isSendingLetter.value = true;
+
+    const payload = {
+      title: title.value,
+      body: body.value,
+      senderEmail: senderEmail.value,
+      recipientEmail: recipientEmail.value,
+      senderName: senderName.value,
+      isFeatured: isFeatured.value
+    }
+
+    const response = await api.sendLetter(payload); 
+    isSendingLetter.value = false;
+    alert("Your letter has been successfully sent. I hope it brings you warmth ❤️")
+    const url = response.data.data.url;
+    const slug = url.split("/").filter(Boolean).pop();
+    navigateTo(`/letter/${slug}`);
+  } catch (error) {
+    isSendingLetter.value = false;
+    alert("There was an error sending the letter. Please try again")
+  }
 }
 
 const autoResizeTextArea = () => {

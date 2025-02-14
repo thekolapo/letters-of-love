@@ -37,5 +37,13 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
       ]
     }
-  }
+  },
+
+  runtimeConfig: {
+    public: {
+      apiUrl: process.env.NUXT_PUBLIC_API_URL,
+      encryptionKey: process.env.NUXT_PUBLIC_ENCRYPTION_KEY,
+      encryptionAlgorithm: process.env.NUXT_PUBLIC_ENCRYPTION_ALGORITHM
+    },
+  },
 })

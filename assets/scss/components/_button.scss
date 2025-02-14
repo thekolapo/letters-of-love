@@ -15,6 +15,24 @@
 	text-decoration: none;
 	color: var(--color-black);
 
+  &__loader {
+    $size: 22px;
+    width: $size;
+    height: $size;
+    border: 2px solid #ffffff90;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 0.4s linear infinite;
+
+    @keyframes rotation {
+      to {
+        transform: rotate(360deg);
+      }
+    } 
+  }
+
 	@media screen and (max-width: 480px) {
     --size: 55px;
 		right: 30px;
