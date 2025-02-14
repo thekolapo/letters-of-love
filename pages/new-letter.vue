@@ -96,7 +96,7 @@ import { useApi } from '~/composables/api';
 const api = useApi();
 
 const textArea = ref(null);
-const textAreaPlaceholder = "Jane Doe,\n\nI’ll love you to the end of time and till my dying breath. When I’m with you, life is perfect and time ceases to exist.\n\nLove from,\nJohn Doe";
+const textAreaPlaceholder = "Jane Doe,\n\nI will always love you, for as long as time itself. When I’m with you, life is perfect and time ceases to exist.\n\nLove from,\nJohn Doe";
 
 const title = ref("");
 const body = ref("");
