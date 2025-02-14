@@ -27,9 +27,8 @@ const { data: letter, pending, error } = await useAsyncData('letterData', async 
   const response = await api.fetchLetter(slug);
 
   const letterData = response.data.data;
-  const decryptedBody = await cryptography.decrypt(letterData.body);
-  letterData.body = decryptedBody.replace(/\\n/g, "\n"); 
-
+  // const decryptedBody = await cryptography.decrypt(letterData.body);
+  // letterData.body = decryptedBody.replace(/\\n/g, "\n"); 
   return letterData;
 });
 
