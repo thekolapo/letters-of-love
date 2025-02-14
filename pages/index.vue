@@ -9,7 +9,7 @@
 			<div class="home__letters-list">
 				<div class="home__letter" v-for="(letter, index) in featuredLetters" :key="index">
 					<nuxt-link :to="`letter/${letter.slug}`" class="u-font-normal">{{ letter.title }}</nuxt-link>
-					<div class="home__letter-date">{{ formatDate(letter.createdAt._seconds) }}</div>
+					<div class="home__letter-date">{{ useTimeAgo(letter.createdAt._seconds) }}</div>
 				</div>
 			</div>
 		</div>
@@ -27,13 +27,44 @@ const { data: featuredLetters, pending, error, refresh } = await useAsyncData('l
   const response = await api.fetchFeaturedLetters(); 
   const featuredLetters = response.data.data
 
-  return featuredLetters; 
+  return featuredLetters.sort((a, b) => b.createdAt._seconds - a.createdAt._seconds); 
 });
 
 const formatDate = (seconds) => {
   const date = new Date(seconds * 1000);
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   return date.toLocaleDateString('en-US', options);
+};
+
+const useTimeAgo = (timestamp) => {
+  const now = Math.floor(Date.now() / 1000); // Current time in seconds
+  const time = Number(timestamp); // Ensure it's a number
+
+  if (time > 10000000000) {
+    // If the timestamp looks like milliseconds (13+ digits), convert to seconds
+    timestamp = Math.floor(time / 1000);
+  }
+
+  const seconds = now - timestamp; // Difference in seconds
+
+  const intervals = [
+    { label: "year", seconds: 31536000 },
+    { label: "month", seconds: 2592000 },
+    { label: "week", seconds: 604800 },
+    { label: "day", seconds: 86400 },
+    { label: "hour", seconds: 3600 },
+    { label: "minute", seconds: 60 },
+    { label: "second", seconds: 1 },
+  ];
+
+  for (const interval of intervals) {
+    const count = Math.floor(seconds / interval.seconds);
+    if (count >= 1) {
+      return `${count} ${interval.label}${count > 1 ? "s" : ""} ago`;
+    }
+  }
+
+  return "just now";
 };
 </script>
   
