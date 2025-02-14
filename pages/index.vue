@@ -23,7 +23,7 @@ import { useApi } from '~/composables/api';
 
 const api = useApi();
 
-const { data: featuredLetters, pending, error, refresh } = useAsyncData('lettersData', async () => {
+const { data: featuredLetters, pending, error, refresh } = await useAsyncData('lettersData', async () => {
   const response = await api.fetchFeaturedLetters(); 
   const featuredLetters = response.data.data
 

@@ -22,7 +22,7 @@ const autoResize = (textarea) => {
   textarea.style.height = `${textarea.scrollHeight}px`;
 };
 
-const { data: letter, pending, error } = useAsyncData('letterData', async () => {
+const { data: letter, pending, error } = await useAsyncData('letterData', async () => {
   const slug = route.params.slug;
   const response = await api.fetchLetter(slug);
 
