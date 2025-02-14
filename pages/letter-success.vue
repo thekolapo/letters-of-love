@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 	<div class="letter">
 		<p class="u-font-normal">
 			Your letter has been successfully sent &nbsp;
@@ -50,4 +50,4 @@ onMounted(() => {
     }
 	}
 }
-</style>
+</style> -->
