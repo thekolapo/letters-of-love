@@ -8,7 +8,7 @@
 			<p class="home__letters-title">Featured Letters</p>
 			<div class="home__letters-list">
 				<div class="home__letter" v-for="(letter, index) in featuredLetters" :key="index">
-					<nuxt-link :to="`letter/${letter.slug}`" class="u-font-normal">{{ letter.title }}</nuxt-link>
+					<nuxt-link :to="{ name: 'letter-slug', params: { slug: letter.slug } }" class="u-font-normal">{{ letter.title }}</nuxt-link>
 					<div class="home__letter-date">{{ useTimeAgo(letter.createdAt._seconds) }}</div>
 				</div>
 			</div>
