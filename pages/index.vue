@@ -35,19 +35,17 @@ import { useApi } from "~/composables/api";
 
 const api = useApi();
 
-const {
-  data: featuredLetters,
-  pending,
-  error,
-  refresh,
-} = await useAsyncData("lettersData", async () => {
-  const response = await api.fetchFeaturedLetters();
-  const featuredLetters = response.data.data;
-
-  return featuredLetters.sort(
-    (a, b) => b.createdAt._seconds - a.createdAt._seconds
-  );
-});
+const { data: featuredLetters } = await useAsyncData(
+  "lettersData",
+  async () => {
+    const response = await api.fetchFeaturedLetters();
+    return response.data.sort(
+      (a, b) => b.createdAt._seconds - a.createdAt._seconds
+    );
+  }
+  // { server: false }
+  // { getCachedData: () => null }
+);
 
 const formatDate = (seconds) => {
   const date = new Date(seconds * 1000);
