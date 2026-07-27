@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { useAsyncData, useRoute } from "#app";
+import { useAsyncData, useRoute, useSeoMeta } from "#app";
 import { ref, onMounted } from "vue";
 import { useApi } from "~/composables/api";
 import cryptography from "~/utils/cryptography";
@@ -39,6 +39,14 @@ const {
   // const decryptedBody = await cryptography.decrypt(letterData.body);
   // letterData.body = decryptedBody.replace(/\\n/g, "\n");
   return letterData;
+});
+
+useSeoMeta({
+  title: () => letter.value?.title || "Letters of Love",
+  description: () => {
+    const body = letter.value?.body || "";
+    return body.length > 120 ? body.slice(0, 120) + "..." : body;
+  },
 });
 
 onMounted(() => {
