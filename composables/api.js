@@ -6,7 +6,7 @@ export const useApi = () => {
   };
 
   const fetchLetter = (id) => {
-    return $fetch(`${config.public.apiUrl}/letters/${id}`);
+    return $fetch(`${config.public.apiUrl}/letters/${encodeURIComponent(id)}`);
   };
 
   const sendLetter = (payload) => {
